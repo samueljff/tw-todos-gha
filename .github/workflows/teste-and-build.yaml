@@ -1,0 +1,49 @@
+name: teste-and-buuld
+run-name: Teste and Build
+
+on: 
+    - workflow_call
+    - workflow_dispatch
+
+jobs:
+    teste-and-build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Setup node 20
+              uses: actions/setup-node@v4
+              with:
+                node-version: 20
+                cache: npm
+
+            - name: Install Dependencies
+              run: npm ci
+            
+            - name: Check for ESLint errors
+              run: npm run lint
+            
+            - name: Build Project
+              run: npm run build
+
+            - name: Upload Build Artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: build
+                path: build
+
+            - name: Run Tests
+              run: npm run test:coverage
+
+            - name: Upload Coverage Artifact
+              uses: actions/upload-artifact@v4
+              with:
+                name: coverage
+                path: coverage
+            - name: Upload Coverage to Codecov
+              uses: codecov/codecov-action@v3
+              with:
+                CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+              
+              
