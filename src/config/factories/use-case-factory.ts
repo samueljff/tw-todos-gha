@@ -1,11 +1,10 @@
-import { CreateTodoUseCase } from '@/core/use-cases/create-todo-use-case';
-import { DeleteTodoByIdUseCase } from '@/core/use-cases/delete-todo-by-id-use-case';
-import { GetAllTodosUseCase } from '@/core/use-cases/get-all-todos-use-case';
-import { GetTodoByIdUseCase } from '@/core/use-cases/get-todo-by-id-use-case';
-import { RepositoryFactory } from './repository-factory';
+import { CreateTodoUseCase } from "@/core/use-cases/create-todo-use-case";
+import { DeleteTodoByIdUseCase } from "@/core/use-cases/delete-todo-by-id-use-case";
+import { GetAllTodosUseCase } from "@/core/use-cases/get-all-todos-use-case";
+import { GetTodoByIdUseCase } from "@/core/use-cases/get-todo-by-id-use-case";
+import { RepositoryFactory } from "./repository-factory";
 
 export class UseCaseFactory {
-
   private static _getAllTodosUseCaseInstance: GetAllTodosUseCase;
   private static _getTodoByIdUseCaseInstance: GetTodoByIdUseCase;
   private static _createTodoUseCaseInstance: CreateTodoUseCase;
@@ -46,5 +45,4 @@ export class UseCaseFactory {
     }
     return this._deleteTodoByIdUseCaseInstance;
   }
-
 }
