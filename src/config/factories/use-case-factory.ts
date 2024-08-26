@@ -46,5 +46,5 @@ export class UseCaseFactory {
     }
     return this._deleteTodoByIdUseCaseInstance;
   }
-  
+
 }
